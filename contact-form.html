@@ -8,28 +8,30 @@
         <div id="app">
 
             <h1>Contact Form</h1>
-
+            <p><strong>{{ form.statusText }}</strong></p>
             <form method="post" action="#">
                 <div>
                     <label for="name">Name</label>
-                    <input name="name" id="name" v-model="name"/>
+                    <input name="name" id="name" v-model="form.name"/>
                 </div>
                 <div>
                     <label for="email">Email</label>
-                    <input name="email" id="email" v-model="email"/>
+                    <input name="email" id="email" v-model="form.email"/>
                 </div>
                 <div>
                     <label for="message">Message</label>
-                    <textarea name="message" id="message" v-model="message"></textarea>
+                    <textarea name="message" id="message" v-model="form.message"></textarea>
                 </div>
+
+                <button @click.prevent="validateForm">Send Form</button>
             </form>
 
             <h2>Form Details</h2>
 
             <!-- DETAILS HERE -->
-            <p>The name is: {{ name }}</p>
-            <p>The email is: {{ email }}</p>
-            <p>The message is: {{ message }}</p>
+            <p>The name is: {{ form.name }}</p>
+            <p>The email is: {{ form.email }}</p>
+            <p>The message is: {{ form.message }}</p>
 
         </div>
 
@@ -37,10 +39,22 @@
             var app = new Vue({
                 el: '#app',
                 data: {
-                    name: '',
-                    email: '',
-                    message: '',
-                }
+                    form: {
+                        name: '',
+                        email: '',
+                        message: '',
+                        statusText: '',
+                    }
+                },
+                methods: {
+                    validateForm: function() {
+                        if (this.form.name === '' || this.form.email === '' || this.form.message === '') {
+                            this.form.statusText = 'Form not submitted';
+                        } else {
+                            this.form.statusText = 'Form submitted successfully';
+                        }
+                    }
+                },
             });
         </script>
     </body>
