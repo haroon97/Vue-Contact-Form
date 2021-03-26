@@ -13,14 +13,17 @@
                 <div>
                     <label for="name">Name</label>
                     <input name="name" id="name" v-model="form.name"/>
+                    <p>{{ validateName }}</p>
                 </div>
                 <div>
                     <label for="email">Email</label>
                     <input name="email" id="email" v-model="form.email"/>
+                    <p>{{ validateEmail }}</p>
                 </div>
                 <div>
                     <label for="message">Message</label>
                     <textarea name="message" id="message" v-model="form.message"></textarea>
+                    <p>{{ validateMessage }}</p>
                 </div>
 
                 <button @click.prevent="validateForm">Send Form</button>
@@ -43,7 +46,7 @@
                         name: '',
                         email: '',
                         message: '',
-                        statusText: '',
+                        statusText: ''
                     }
                 },
                 methods: {
@@ -55,6 +58,23 @@
                         }
                     }
                 },
+                computed: {
+                    validateName: function() {
+                        if (!this.form.name.length && this.form.statusText.length !== 0) {
+                            return 'Name is required';
+                        }
+                    },
+                    validateEmail: function() {
+                        if (!this.form.email.length && this.form.statusText.length !== 0) {
+                            return 'Email is required';
+                        }
+                    },
+                    validateMessage: function() {
+                        if (!this.form.message.length && this.form.statusText.length !== 0) {
+                            return 'Message is required';
+                        }
+                    },
+                }
             });
         </script>
     </body>
