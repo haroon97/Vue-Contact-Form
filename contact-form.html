@@ -12,21 +12,24 @@
             <form method="post" action="#">
                 <div>
                     <label for="name">Name</label>
-                    <input name="name" id="name" />
+                    <input name="name" id="name" v-model="name"/>
                 </div>
                 <div>
                     <label for="email">Email</label>
-                    <input name="email" id="email" />
+                    <input name="email" id="email" v-model="email"/>
                 </div>
                 <div>
                     <label for="message">Message</label>
-                    <textarea name="message" id="message"></textarea>
+                    <textarea name="message" id="message" v-model="message"></textarea>
                 </div>
             </form>
 
             <h2>Form Details</h2>
 
             <!-- DETAILS HERE -->
+            <p>The name is: {{ name }}</p>
+            <p>The email is: {{ email }}</p>
+            <p>The message is: {{ message }}</p>
 
         </div>
 
@@ -34,7 +37,9 @@
             var app = new Vue({
                 el: '#app',
                 data: {
-                    //
+                    name: '',
+                    email: '',
+                    message: '',
                 }
             });
         </script>
